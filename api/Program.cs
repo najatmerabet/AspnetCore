@@ -1,4 +1,6 @@
 using api.Data;
+using api.Interfaces;
+using api.Repository;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 
@@ -12,6 +14,12 @@ builder.Services.AddDbContext<ApplicationDbContext>(options=> {
 });
 
 builder.Services.AddControllers();
+
+// In Program.cs or Startup.cs
+builder.Services.AddScoped<IStockRepository, StockREpository >();
+builder.Services.AddScoped<ICommentRepository,CommentRepository >();
+
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
